@@ -133,12 +133,12 @@ export default function HomeUi() {
                 {/* Profile Slider Overlay */}
                 {showProfileSlider && (
                     <div
-                        className="fixed inset-0 z-50"
+                        className="fixed inset-0 z-50 "
                         style={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
                         onClick={() => setShowProfileSlider(false)}
                     >
                         <div
-                            className="fixed left-0 top-0 bottom-0 w-80 shadow-2xl transform transition-transform duration-300 overflow-y-auto"
+                            className="fixed left-0 top-0 bottom-0 w-80 shadow-2xl transform transition-transform duration-300 overflow-y-auto pt-16"
                             style={{ backgroundColor: '#0D0D0D' }}
                             onClick={(e) => e.stopPropagation()}
                         >
