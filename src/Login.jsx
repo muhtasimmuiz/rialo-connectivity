@@ -153,7 +153,7 @@ const AuthUI = ({ setView, view }) => {
     <div className="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden">
 
       <div
-        className="fixed inset-0 z-0"
+        className="fixed inset-0 -z-50"
         style={{
           backgroundImage: 'url(/bg.webp)',
           backgroundSize: 'cover',
