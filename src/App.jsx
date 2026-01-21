@@ -6,11 +6,14 @@ import HomeUi from './Home';
 
 export default function App() {
   const [view, setView] = useState('login');
+  const authViews = new Set(['login', 'signup', 'forgot']);
 
   return (
     <AuthProvider>
       {
-        view === 'login' ? <AuthUI setView={setView} view={view} /> : <HomeUi setView={setView} view={view} />
+        authViews.has(view)
+          ? <AuthUI setView={setView} view={view} />
+          : <HomeUi setView={setView} view={view} />
       }
     </AuthProvider>
   );

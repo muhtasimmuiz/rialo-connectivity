@@ -152,6 +152,8 @@ const AuthUI = ({ setView, view }) => {
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden">
 
+
+      <Logo />
       <div
         className="fixed inset-0 -z-50"
         style={{
@@ -159,13 +161,12 @@ const AuthUI = ({ setView, view }) => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          opacity: 0.15
+          opacity: 1
         }}
       ></div>
-      <Logo />
 
       {/* Decorative blur effect */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-zinc-800 rounded-full filter blur-[150px] opacity-30" />
+      {/* <div className="absolute bottom-0 right-0 w-96 h-96 bg-zinc-800 rounded-full filter blur-[150px] opacity-30" /> */}
 
       {view === 'login' && <LoginView setView={setView} />}
       {view === 'signup' && <SignupView setView={setView} />}
