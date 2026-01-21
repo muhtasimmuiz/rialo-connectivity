@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Home, Bell, Mail, Globe, Heart, MessageCircle, Share2, MoreHorizontal, Image, Film, Tag, FileText, Send, X, Search } from 'lucide-react';
 
-export default function HomeUi() {
-    const [currentPage, setCurrentPage] = useState('home');
+export default function HomeUi({ setView, view }) {
+    // const [currentPage, setCurrentPage] = useState('home');
     const [showProfileSlider, setShowProfileSlider] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [showComingSoon, setShowComingSoon] = useState(false);
@@ -113,7 +113,7 @@ export default function HomeUi() {
             <div
                 className="fixed inset-0 z-0"
                 style={{
-                    backgroundImage: 'url(https://i.postimg.cc/9Xqv5VVc/image.png)',
+                    backgroundImage: 'url(/bg.webp)',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
@@ -189,7 +189,7 @@ export default function HomeUi() {
                             </nav>
 
                             <div className="px-4 mt-8 pb-6">
-                                <button onClick={() => handleMenuClick('Logout')} className="flex items-center gap-3 py-3 px-4 hover:bg-gray-900 rounded-lg w-full">
+                                <button onClick={() => setView("login")} className="flex items-center gap-3 py-3 px-4 hover:bg-gray-900 rounded-lg w-full">
                                     <span className="text-blue-400">↪</span>
                                     <span>Log out</span>
                                 </button>
@@ -225,14 +225,14 @@ export default function HomeUi() {
 
                         <div className="flex items-center gap-6">
                             <button
-                                onClick={() => setCurrentPage('home')}
-                                className={`hover:bg-gray-900 p-2 rounded-lg transition-colors ${currentPage === 'home' ? 'bg-gray-900 text-blue-500' : ''}`}
+                                onClick={() => setView('home')}
+                                className={`hover:bg-gray-900 p-2 rounded-lg transition-colors ${view === 'home' ? 'bg-gray-900 text-blue-500' : ''}`}
                             >
                                 <Home className="w-6 h-6" />
                             </button>
                             <button
-                                onClick={() => setCurrentPage('notifications')}
-                                className={`relative hover:bg-gray-900 p-2 rounded-lg transition-colors ${currentPage === 'notifications' ? 'bg-gray-900 text-blue-500' : ''}`}
+                                onClick={() => setView('notifications')}
+                                className={`relative hover:bg-gray-900 p-2 rounded-lg transition-colors ${view === 'notifications' ? 'bg-gray-900 text-blue-500' : ''}`}
                             >
                                 <Bell className="w-6 h-6" />
                                 {unreadNotifications > 0 && (
@@ -242,8 +242,8 @@ export default function HomeUi() {
                                 )}
                             </button>
                             <button
-                                onClick={() => setCurrentPage('messages')}
-                                className={`relative hover:bg-gray-900 p-2 rounded-lg transition-colors ${currentPage === 'messages' ? 'bg-gray-900 text-blue-500' : ''}`}
+                                onClick={() => setView('messages')}
+                                className={`relative hover:bg-gray-900 p-2 rounded-lg transition-colors ${view === 'messages' ? 'bg-gray-900 text-blue-500' : ''}`}
                             >
                                 <Mail className="w-6 h-6" />
                                 {unreadMessages > 0 && (
@@ -253,8 +253,8 @@ export default function HomeUi() {
                                 )}
                             </button>
                             <button
-                                onClick={() => setCurrentPage('browse')}
-                                className={`hover:bg-gray-900 p-2 rounded-lg transition-colors ${currentPage === 'browse' ? 'bg-gray-900 text-blue-500' : ''}`}
+                                onClick={() => setView('browse')}
+                                className={`hover:bg-gray-900 p-2 rounded-lg transition-colors ${view === 'browse' ? 'bg-gray-900 text-blue-500' : ''}`}
                             >
                                 <Globe className="w-6 h-6" />
                             </button>
@@ -267,10 +267,10 @@ export default function HomeUi() {
                     {/* Main Content Area */}
                     <main className="py-6 px-4">
                         {/* HOME PAGE */}
-                        {currentPage === 'home' && (
+                        {view === 'home' && (
                             <>
                                 {/* Create Post */}
-                                <div className="bg-gray-900 rounded-xl p-6 mb-6">
+                                <div className="bg-[#0d0d0e] rounded-xl p-6 mb-6">
                                     <div className="flex items-start gap-4">
                                         <img
                                             src="https://api.dicebear.com/7.x/avataaars/svg?seed=Muhtasim"
@@ -310,7 +310,7 @@ export default function HomeUi() {
 
                                 {/* Posts */}
                                 {posts.map(post => (
-                                    <div key={post.id} className="bg-gray-900 rounded-xl p-6 mb-6">
+                                    <div key={post.id} className="bg-[#0d0d0e] rounded-xl p-6 mb-6">
                                         <div className="flex items-start justify-between mb-4">
                                             <div className="flex items-center gap-3">
                                                 <img
@@ -361,7 +361,7 @@ export default function HomeUi() {
                         )}
 
                         {/* NOTIFICATIONS PAGE */}
-                        {currentPage === 'notifications' && (
+                        {view === 'notifications' && (
                             <div className="bg-gray-900 rounded-xl p-6">
                                 <h2 className="text-2xl font-bold mb-6">Notifications</h2>
                                 <div className="space-y-4">
@@ -392,7 +392,7 @@ export default function HomeUi() {
                         )}
 
                         {/* MESSAGES PAGE */}
-                        {currentPage === 'messages' && (
+                        {view === 'messages' && (
                             <div className="bg-gray-900 rounded-xl overflow-hidden" style={{ height: 'calc(100vh - 120px)' }}>
                                 <div className="flex h-full">
                                     {/* Messages List */}
@@ -486,7 +486,7 @@ export default function HomeUi() {
                         )}
 
                         {/* BROWSE PAGE */}
-                        {currentPage === 'browse' && (
+                        {view === 'browse' && (
                             <>
                                 <div className="mb-6">
                                     <h2 className="text-2xl font-bold mb-2">Explore Topics</h2>

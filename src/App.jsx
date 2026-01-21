@@ -5,12 +5,12 @@ import AuthUI from './Login';
 import HomeUi from './Home';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('auth');
+  const [view, setView] = useState('login');
 
   return (
     <AuthProvider>
       {
-        currentPage === 'auth' ? <AuthUI setCurrentPage={setCurrentPage} /> : <HomeUi />
+        view === 'login' ? <AuthUI setView={setView} view={view} /> : <HomeUi setView={setView} view={view} />
       }
     </AuthProvider>
   );

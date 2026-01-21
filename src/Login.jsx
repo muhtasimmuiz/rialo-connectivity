@@ -1,20 +1,18 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { USER_CONTEXT } from './context';
 
 const Logo = () => (
-  <svg width="60" height="60" viewBox="0 0 60 60" fill="none" className="absolute top-6 left-6">
-    <path d="M18 15h24c3 0 5 2 5 5v5c0 3-2 5-5 5H28" stroke="#E5E5E5" strokeWidth="6" strokeLinecap="round" />
-    <path d="M18 30h10" stroke="#E5E5E5" strokeWidth="6" strokeLinecap="round" />
-    <path d="M18 45h24" stroke="#E5E5E5" strokeWidth="6" strokeLinecap="round" />
-  </svg>
+  <div className='w-12 h-12 fixed top-0 left-0 m-6'>
+    <img src="/logo.webp" alt="" className='w-full' />
+  </div>
 );
 
-const LoginView = ({ setView, setCurrentPage }) => {
+const LoginView = ({ setView }) => {
   const { setUser, user } = useContext(USER_CONTEXT);
 
   const handleLogin = () => {
 
-    setCurrentPage('home');
+    setView('home');
   }
 
   return (
@@ -54,12 +52,12 @@ const LoginView = ({ setView, setCurrentPage }) => {
   )
 }
 
-const SignupView = ({ setView, setCurrentPage }) => {
+const SignupView = ({ setView }) => {
   const { setUser, user } = useContext(USER_CONTEXT);
 
   const handleLogin = () => {
 
-    setCurrentPage('home');
+    setView('home');
   }
   return (
     <div className="w-full max-w-md">
@@ -149,19 +147,29 @@ const ForgotView = ({ setView }) => (
   </div>
 );
 
-const AuthUI = ({ setCurrentPage }) => {
-  const [view, setView] = useState('login'); // 'login', 'signup', 'forgot'
+const AuthUI = ({ setView, view }) => {
 
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden">
+
+      <div
+        className="fixed inset-0 z-0"
+        style={{
+          backgroundImage: 'url(/bg.webp)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.15
+        }}
+      ></div>
       <Logo />
 
       {/* Decorative blur effect */}
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-zinc-800 rounded-full filter blur-[150px] opacity-30" />
 
-      {view === 'login' && <LoginView setView={setView} setCurrentPage={setCurrentPage} />}
-      {view === 'signup' && <SignupView setView={setView} setCurrentPage={setCurrentPage} />}
-      {view === 'forgot' && <ForgotView setView={setView} setCurrentPage={setCurrentPage} />}
+      {view === 'login' && <LoginView setView={setView} />}
+      {view === 'signup' && <SignupView setView={setView} />}
+      {view === 'forgot' && <ForgotView setView={setView} />}
 
       {view === 'login' && (
         <div className="absolute bottom-6 left-0 right-0">
