@@ -181,7 +181,7 @@ const AuthUI = ({ setView, view }) => {
             <a href="#" className="hover:text-gray-400">Settings</a>
             <a href="#" className="hover:text-gray-400">Activity log</a>
           </div>
-          <p className="text-center text-gray-600 text-xs">Riale © 2026</p>
+          <p className="text-center text-gray-600 text-xs">Rialo © 2026</p>
         </div>
       )}
     </div>
